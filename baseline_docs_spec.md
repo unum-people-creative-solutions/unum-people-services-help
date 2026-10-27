@@ -1,4 +1,4 @@
-# Baseline Documentation Specification - unum-people-services-docs
+# Baseline Documentation Specification - unum-people-services-help
 
 **Data:** 2026-05-19
 **Versão:** 1.0.0
