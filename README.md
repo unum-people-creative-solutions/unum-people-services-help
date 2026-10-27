@@ -6,7 +6,7 @@
 Para obter o contexto arquitetural completo e consultar o *Single Source of Truth* do ecossistema, acesse o repositório centralizado de documentação:
 👉 **[unum-people-docs](https://github.com/unum-people-creative-solutions/unum-people-docs.git)**
 
-# unum-people-services-docs
+# unum-people-services-help
 
 Repositório central da **Central de Ajuda** e **Documentação Técnica** do ecossistema Unum People.
 
