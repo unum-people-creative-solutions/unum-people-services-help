@@ -169,6 +169,7 @@ done
 for expr in "7 primeiros dias" "Até 7 dias" "sétimo dia" "Depois dos 7 dias"; do
   if grep -qF -- "$expr" "$CANCELAR"; then falha "$CANCELAR: ainda contém o prazo antigo \"$expr\""; else ok "$CANCELAR: sem \"$expr\""; fi
 done
+if grep -qF -- "Contrato anual:" "$CANCELAR"; then ok "$CANCELAR: contém a linha \"Contrato anual:\" (OF-603)"; else falha "$CANCELAR: falta a linha \"Contrato anual:\" (OF-603)"; fi
 # O prazo do pedido não pago (7 dias) é outra regra e não muda.
 if grep -qF -- "não for pago em 7 dias" "$PASTA/publicar.html"; then ok "$PASTA/publicar.html: mantém \"não for pago em 7 dias\""; else falha "$PASTA/publicar.html: perdeu \"não for pago em 7 dias\""; fi
 
