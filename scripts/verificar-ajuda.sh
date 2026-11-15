@@ -161,6 +161,17 @@ else
   falha "README.md não lista paginas/ e scripts/verificar-ajuda.sh"
 fi
 
+# --- 10. Garantia de 28 dias no cancelamento (oferta-e-primeira-tela OF-602, OF-605) ---
+CANCELAR="$PASTA/cancelar.html"
+for expr in "Nos 28 primeiros dias" "Até 28 dias depois do primeiro pagamento" "23h59 do 28º dia" "Depois dos 28 dias"; do
+  if grep -qF -- "$expr" "$CANCELAR"; then ok "$CANCELAR: contém \"$expr\""; else falha "$CANCELAR: falta \"$expr\""; fi
+done
+for expr in "7 primeiros dias" "Até 7 dias" "sétimo dia" "Depois dos 7 dias"; do
+  if grep -qF -- "$expr" "$CANCELAR"; then falha "$CANCELAR: ainda contém o prazo antigo \"$expr\""; else ok "$CANCELAR: sem \"$expr\""; fi
+done
+# O prazo do pedido não pago (7 dias) é outra regra e não muda.
+if grep -qF -- "não for pago em 7 dias" "$PASTA/publicar.html"; then ok "$PASTA/publicar.html: mantém \"não for pago em 7 dias\""; else falha "$PASTA/publicar.html: perdeu \"não for pago em 7 dias\""; fi
+
 echo
 if [ "$FALHAS" -gt 0 ]; then
   echo "RESULTADO: $FALHAS falha(s)"
