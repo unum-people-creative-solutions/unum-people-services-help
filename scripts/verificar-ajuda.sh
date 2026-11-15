@@ -170,6 +170,9 @@ for expr in "7 primeiros dias" "Até 7 dias" "sétimo dia" "Depois dos 7 dias"; 
   if grep -qF -- "$expr" "$CANCELAR"; then falha "$CANCELAR: ainda contém o prazo antigo \"$expr\""; else ok "$CANCELAR: sem \"$expr\""; fi
 done
 if grep -qF -- "Contrato anual:" "$CANCELAR"; then ok "$CANCELAR: contém a linha \"Contrato anual:\" (OF-603)"; else falha "$CANCELAR: falta a linha \"Contrato anual:\" (OF-603)"; fi
+# Onde registrar o domínio (OF-604)
+DOMINIO="$PASTA/dominio.html"
+if grep -qF -- "Registro.br" "$DOMINIO" && grep -qF -- 'href="https://registro.br"' "$DOMINIO"; then ok "$DOMINIO: diz onde registrar (Registro.br, com link)"; else falha "$DOMINIO: falta \"Registro.br\" com href=\"https://registro.br\" (OF-604)"; fi
 # O prazo do pedido não pago (7 dias) é outra regra e não muda.
 if grep -qF -- "não for pago em 7 dias" "$PASTA/publicar.html"; then ok "$PASTA/publicar.html: mantém \"não for pago em 7 dias\""; else falha "$PASTA/publicar.html: perdeu \"não for pago em 7 dias\""; fi
 
